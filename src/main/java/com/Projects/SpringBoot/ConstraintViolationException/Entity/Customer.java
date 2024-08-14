@@ -1,6 +1,8 @@
 package com.Projects.SpringBoot.ConstraintViolationException.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.aspectj.lang.annotation.control.CodeGenerationHint;
 
@@ -14,10 +16,10 @@ public class Customer {
     @Column(name = "Name",nullable = false)
     String name;
     @Column(name = "AccountNo",nullable = false)
-    @Pattern(regexp = "^[0-9]{9,16}&",message = "Please Enytr An Valid Account No")
+    @Pattern(regexp = "^[0-9]{9,16}$",message = "Please Enter An Valid Account No")
     String accNo;
     @Column(name = "Phone No")
-    @Pattern(regexp = "^[6-9]{1}[0-9]{9}&",message = "Please Enter An Valid Phone No")
+    @Pattern(regexp = "^[6-9]{1}[0-9]{9}$",message = "Please Enter An Valid Phone No")
     String phone;
 
     public Customer(int id, String name, String accNo, String phone) {
@@ -25,6 +27,9 @@ public class Customer {
         this.name = name;
         this.accNo = accNo;
         this.phone = phone;
+    }
+
+    public Customer() {
     }
 
     public int getId() {
